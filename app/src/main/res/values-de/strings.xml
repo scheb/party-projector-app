@@ -8,4 +8,6 @@
     <string name="writeMessage">Verfasse eine Nachricht</string>
     <string name="pref_server">Server</string>
     <string name="pref_server_summ">HTTP Adresse des Projector-Servers</string>
+    <string name="messageSent">Nachricht gesendet!</string>
+    <string name="title_activity_settings">Einstellungen</string>
 </resources>

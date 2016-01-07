@@ -6,7 +6,8 @@
     <string name="displayPicture">Display Picture</string>
     <string name="capturePicture">Capture Picture</string>
     <string name="writeMessage">Write a message</string>
-    <string name="title_activity_display_message">My Message</string>
     <string name="pref_server">Server</string>
     <string name="pref_server_summ">HTTP address of the projector server</string>
+    <string name="messageSent">Message sent!</string>
+    <string name="title_activity_settings">Settings</string>
 </resources>
