@@ -1,5 +1,8 @@
 package de.christianscheb.partyprojector.app.httpclient;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.*;
 import java.net.*;
 
@@ -49,11 +52,17 @@ public class WebApiClient {
             //Get Response
             InputStream is = urlConnection.getInputStream();
             BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-            String response = getResponse(rd);
+            JSONObject response = new JSONObject(getResponse(rd));
+            boolean isSuccess = response.getBoolean("success");
+            if (!isSuccess) {
+                throw new WebApiClientException("Request failed");
+            }
         } catch (ProtocolException e) {
             throw new WebApiClientException("Could not execute HTTP request", e);
         } catch (IOException e) {
             throw new WebApiClientException("Could not execute HTTP request", e);
+        } catch (JSONException e) {
+            throw new WebApiClientException("Malformed response", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
