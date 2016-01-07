@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Party Projector</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="capturePicture">Foto aufnehmen</string>
+    <string name="displayPicture">Aus Galerie auswählen</string>
+    <string name="send">Senden</string>
+    <string name="writeMessage">Verfasse eine Nachricht</string>
+    <string name="pref_server">Server</string>
+    <string name="pref_server_summ">HTTP Adresse des Projector-Servers</string>
+</resources>
