@@ -1,6 +1,9 @@
 package de.christianscheb.partyprojector.app;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,10 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+import de.christianscheb.partyprojector.app.httpclient.WebApiClient;
+import de.christianscheb.partyprojector.app.httpclient.WebApiClientException;
 
 public class MainActivity extends AppCompatActivity {
-
-    public static final String EXTRA_MESSAGE = "de.christianscheb.partyprojector.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +42,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.messageTextField);
         String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+        if (message.length() == 0) {
+            return; // Nothing to do
+        }
+
+        new PostMessageTask().execute(message);
+    }
+
+    private String getServerBaseUrl() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String baseUrl = preferences.getString(SettingsActivity.KEY_PREF_SERVER, null);
+        if (baseUrl != null && !baseUrl.endsWith("/")) {
+            baseUrl += "/";
+        }
+
+        return baseUrl;
+    }
+
+    private void showToast(String text) {
+        Context context = getApplicationContext();
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+    private class PostMessageTask extends AsyncTask<String, Boolean, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... messages) {
+            try {
+                WebApiClient client = new WebApiClient(getServerBaseUrl());
+                client.sendMessage(messages[0]);
+                return true;
+            } catch (WebApiClientException e) {
+                showToast(e.getMessage());
+                return false;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean success) {
+            if (success) {
+                showToast("Done!");
+            }
+        }
     }
 }
+
+
