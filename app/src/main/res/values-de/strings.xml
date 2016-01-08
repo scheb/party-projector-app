@@ -2,12 +2,14 @@
 <resources>
     <string name="app_name">Party Projector</string>
     <string name="action_settings">Einstellungen</string>
-    <string name="capturePicture">Foto aufnehmen</string>
-    <string name="displayPicture">Aus Galerie auswählen</string>
+    <string name="capture_picture">Foto aufnehmen</string>
+    <string name="display_picture">Aus Galerie auswählen</string>
     <string name="send">Senden</string>
-    <string name="writeMessage">Verfasse eine Nachricht</string>
+    <string name="write_message">Verfasse eine Nachricht</string>
     <string name="pref_server">Server</string>
     <string name="pref_server_summ">HTTP Adresse des Projector-Servers</string>
-    <string name="messageSent">Nachricht gesendet!</string>
+    <string name="message_sent">Nachricht gesendet!</string>
     <string name="title_activity_settings">Einstellungen</string>
+    <string name="picture_sent">Bild gesendet!</string>
+    <string name="writeFailed"></string>
 </resources>

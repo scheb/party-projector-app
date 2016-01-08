@@ -30,7 +30,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/writeMessage"
+                android:hint="@string/write_message"
                 android:id="@+id/messageTextField"
                 android:inputType="text"
                 android:layout_weight="1" />
@@ -40,19 +40,26 @@
                 android:layout_height="wrap_content"
                 android:text="@string/send"
                 android:id="@+id/sendMessageButton"
-                android:onClick="sendMessage" />
+                android:onClick="onSendMessage" />
         </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/displayPicture"
-            android:id="@+id/uploadImageButton" />
+            android:text="@string/display_picture"
+            android:id="@+id/uploadImageButton"
+            android:onClick="onSelectPicture" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/capturePicture"
-            android:id="@+id/captureButton" />
+            android:text="@string/capture_picture"
+            android:id="@+id/captureButton"
+            android:onClick="onCapturePicture" />
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView" />
     </LinearLayout>
 </RelativeLayout>
