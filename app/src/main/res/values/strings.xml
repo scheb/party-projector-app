@@ -13,4 +13,5 @@
     <string name="picture_sent">Picture sent!</string>
     <string name="message_failed">Failed sending message!</string>
     <string name="picture_failed">Failed sending picture!</string>
+    <string name="write_failed">Cannot create image file</string>
 </resources>

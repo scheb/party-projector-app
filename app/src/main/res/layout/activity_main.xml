@@ -47,14 +47,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/display_picture"
-            android:id="@+id/uploadImageButton"
+            android:id="@+id/selectPictureButton"
             android:onClick="onSelectPicture" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/capture_picture"
-            android:id="@+id/captureButton"
+            android:id="@+id/capturePictureButton"
             android:onClick="onCapturePicture" />
 
         <ImageView

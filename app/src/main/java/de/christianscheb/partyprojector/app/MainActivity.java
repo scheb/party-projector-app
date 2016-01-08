@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String PREF_CURRENT_PHOTO_PATH = "currentPhotoPath";
     private EditText editText;
     private Button sendMessageButton;
+    private Button selectPictureButton;
+    private Button capturePictureButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         editText = (EditText) findViewById(R.id.messageTextField);
         sendMessageButton = (Button) findViewById(R.id.sendMessageButton);
+        selectPictureButton = (Button) findViewById(R.id.selectPictureButton);
+        capturePictureButton = (Button) findViewById(R.id.capturePictureButton);
     }
 
     @Override
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Log.d(getLocalClassName(), "Send message: " + message);
-        setMessageInputState(false);
+        enableMessageInput(false);
         new PostMessageTask().execute(message);
     }
 
@@ -77,12 +81,18 @@ public class MainActivity extends AppCompatActivity {
         editText.setText(null);
     }
 
-    private void setMessageInputState(boolean enabled) {
+    private void enableMessageInput(boolean enabled) {
         editText.setEnabled(enabled);
         sendMessageButton.setEnabled(enabled);
     }
 
+    private void enablePictureUpload(boolean enabled) {
+        selectPictureButton.setEnabled(enabled);
+        capturePictureButton.setEnabled(enabled);
+    }
+
     public void onSelectPicture(View view) {
+        enablePictureUpload(false);
         Log.d(getLocalClassName(), "Select picture");
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
@@ -96,12 +106,13 @@ public class MainActivity extends AppCompatActivity {
             imageFile = createTemporaryImageFile();
         } catch (IOException e) {
             e.printStackTrace();
-            showToast(getString(R.string.writeFailed));
+            showToast(getString(R.string.write_failed));
             return;
         }
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            enablePictureUpload(false);
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
@@ -224,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean isSuccess) {
-            setMessageInputState(true);
+            enableMessageInput(true);
             if (isSuccess) {
                 resetMessageText();
                 showToast(getString(R.string.message_sent));
@@ -251,6 +262,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean isSuccess) {
+            enablePictureUpload(true);
             if (isSuccess) {
                 showToast(getString(R.string.picture_sent));
             } else {
