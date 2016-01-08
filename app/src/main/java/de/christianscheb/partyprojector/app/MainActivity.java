@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSelectPicture(View view) {
-        enablePictureUpload(false);
         Log.d(getLocalClassName(), "Select picture");
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
@@ -112,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            enablePictureUpload(false);
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
@@ -155,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             String currentPhotoPath = getCurrentPhotoPath();
             Log.d(getLocalClassName(), "Picture captured");
             if (currentPhotoPath != null) {
+                enablePictureUpload(false);
                 Log.d(getLocalClassName(), "Captured picture file is " + currentPhotoPath);
                 Uri picture = Uri.fromFile(new File(currentPhotoPath));
                 galleryAddPic(picture);
@@ -182,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void onPictureSelected(int resultCode, Intent data) {
         if(resultCode == RESULT_OK){
+            enablePictureUpload(false);
             Uri selectedImage = data.getData();
             Log.d(getLocalClassName(), "Selected picture is " + selectedImage);
             sendPicture(selectedImage);
