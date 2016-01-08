@@ -11,5 +11,6 @@
     <string name="message_sent">Nachricht gesendet!</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="picture_sent">Bild gesendet!</string>
-    <string name="writeFailed"></string>
+    <string name="message_failed">Nachricht wurde nicht gesendet!</string>
+    <string name="picture_failed">Bild wurde nicht gesendet!</string>
 </resources>
