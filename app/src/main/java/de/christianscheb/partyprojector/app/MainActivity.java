@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         return editText.getText().toString();
     }
 
-    private void resetMessage() {
+    private void resetMessageText() {
         editText.setText(null);
     }
 
@@ -224,10 +224,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Boolean isSuccess) {
-            resetMessage();
             setMessageInputState(true);
             if (isSuccess) {
+                resetMessageText();
                 showToast(getString(R.string.message_sent));
+            } else {
+                showToast(getString(R.string.message_failed));
             }
         }
     }
@@ -251,6 +253,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean isSuccess) {
             if (isSuccess) {
                 showToast(getString(R.string.picture_sent));
+            } else {
+                showToast(getString(R.string.picture_failed));
             }
         }
     }

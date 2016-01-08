@@ -11,4 +11,6 @@
     <string name="message_sent">Message sent!</string>
     <string name="title_activity_settings">Settings</string>
     <string name="picture_sent">Picture sent!</string>
+    <string name="message_failed">Failed sending message!</string>
+    <string name="picture_failed">Failed sending picture!</string>
 </resources>
