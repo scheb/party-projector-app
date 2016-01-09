@@ -14,4 +14,9 @@
     <string name="message_failed">Failed sending message!</string>
     <string name="picture_failed">Failed sending picture!</string>
     <string name="write_failed">Cannot create image file</string>
+    <string name="pref_server_test">Test connection</string>
+    <string name="pref_server_test_summ">Check the connection to the projector server</string>
+    <string name="connection_success">Connection works!</string>
+    <string name="connection_failed">Can\'t connect to projector server.</string>
+    <string name="ok">OK</string>
 </resources>

@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import de.christianscheb.partyprojector.app.httpclient.WebApiClient;
 import de.christianscheb.partyprojector.app.httpclient.WebApiClientException;
+import de.christianscheb.partyprojector.app.preferences.AppPreferences;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -33,12 +34,14 @@ public class MainActivity extends AppCompatActivity {
     private Button sendMessageButton;
     private Button selectPictureButton;
     private Button capturePictureButton;
+    private AppPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         setContentView(R.layout.activity_main);
+        preferences = new AppPreferences(PreferenceManager.getDefaultSharedPreferences(this));
         editText = (EditText) findViewById(R.id.messageTextField);
         sendMessageButton = (Button) findViewById(R.id.sendMessageButton);
         selectPictureButton = (Button) findViewById(R.id.selectPictureButton);
@@ -208,22 +211,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private String getServerBaseUrl() {
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String baseUrl = preferences.getString(SettingsActivity.KEY_PREF_SERVER, null);
-        if (baseUrl != null && !baseUrl.endsWith("/")) {
-            baseUrl += "/";
-        }
-
-        return baseUrl;
-    }
-
     private class PostMessageTask extends AsyncTask<String, Boolean, Boolean> {
 
         @Override
         protected Boolean doInBackground(String... messages) {
             try {
-                WebApiClient client = new WebApiClient(getServerBaseUrl());
+                WebApiClient client = new WebApiClient(preferences.getServerBaseUrl());
                 client.sendMessage(messages[0]);
                 return true;
             } catch (WebApiClientException e) {
@@ -250,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(InputStream... pictures) {
             try {
-                WebApiClient client = new WebApiClient(getServerBaseUrl());
+                WebApiClient client = new WebApiClient(preferences.getServerBaseUrl());
                 client.sendPicture(pictures[0]);
                 return true;
             } catch (WebApiClientException e) {

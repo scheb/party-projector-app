@@ -20,6 +20,38 @@ public class WebApiClient {
         }
     }
 
+    public boolean testConnection() throws WebApiClientException {
+        URL urlObj = getUrl("");
+        Log.d(getClass().getSimpleName(), "Request to: " + urlObj);
+
+        HttpURLConnection urlConnection = null;
+        try {
+            urlConnection = (HttpURLConnection) urlObj.openConnection();
+            urlConnection.setConnectTimeout(5000);
+            urlConnection.setReadTimeout(5000);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setUseCaches(false);
+            urlConnection.setDoInput(true);
+
+            //Get Response
+            JSONObject response = new JSONObject(getResponse(urlConnection));
+            boolean isSuccess = response.getBoolean("success");
+            String serverName = response.getString("server");
+            Log.d(getClass().getSimpleName(), "Request sent");
+            return isSuccess && serverName != null;
+        } catch (ProtocolException e) {
+            throw new WebApiClientException("Could not execute HTTP request", e);
+        } catch (IOException e) {
+            throw new WebApiClientException("Could not execute HTTP request", e);
+        } catch (JSONException e) {
+            throw new WebApiClientException("Malformed response", e);
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+    }
+
     public void sendMessage(String message) throws WebApiClientException {
         URL urlObj = getUrl("message");
         Log.d(getClass().getSimpleName(), "Request to: " + urlObj);

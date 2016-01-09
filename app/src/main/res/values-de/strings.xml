@@ -14,4 +14,9 @@
     <string name="message_failed">Nachricht wurde nicht gesendet!</string>
     <string name="picture_failed">Bild wurde nicht gesendet!</string>
     <string name="write_failed">Bilddatei konnte nicht angelegt werden</string>
+    <string name="connection_failed">Konnte nicht zum Server verbinden.</string>
+    <string name="connection_success">Die Verbindung funktioniert!</string>
+    <string name="ok">OK</string>
+    <string name="pref_server_test">Verbindung testen</string>
+    <string name="pref_server_test_summ">Prüfe ob die Verbindung zum Server funktioniert</string>
 </resources>
