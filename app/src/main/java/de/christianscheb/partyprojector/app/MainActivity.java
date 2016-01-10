@@ -11,12 +11,12 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.view.inputmethod.EditorInfo;
+import android.widget.*;
 import de.christianscheb.partyprojector.app.httpclient.WebApiClient;
 import de.christianscheb.partyprojector.app.httpclient.WebApiClientException;
 import de.christianscheb.partyprojector.app.preferences.AppPreferences;
@@ -32,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String PREF_CURRENT_PHOTO_PATH = "currentPhotoPath";
     private EditText editText;
     private Button sendMessageButton;
-    private Button selectPictureButton;
-    private Button capturePictureButton;
+    private ImageButton selectPictureButton;
+    private ImageButton capturePictureButton;
     private AppPreferences preferences;
 
     @Override
@@ -44,8 +44,21 @@ public class MainActivity extends AppCompatActivity {
         preferences = new AppPreferences(PreferenceManager.getDefaultSharedPreferences(this));
         editText = (EditText) findViewById(R.id.messageTextField);
         sendMessageButton = (Button) findViewById(R.id.sendMessageButton);
-        selectPictureButton = (Button) findViewById(R.id.selectPictureButton);
-        capturePictureButton = (Button) findViewById(R.id.capturePictureButton);
+        selectPictureButton = (ImageButton) findViewById(R.id.selectPictureButton);
+        capturePictureButton = (ImageButton) findViewById(R.id.capturePictureButton);
+
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                System.out.println("Editor event: " + actionId);
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    onSendMessage(v);
+                    return true;
+                }
+
+                return false;
+            }
+        });
     }
 
     @Override
@@ -248,7 +261,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } catch (WebApiClientException e) {
                 e.printStackTrace();
-                showToast(e.getMessage());
                 return false;
             }
         }
