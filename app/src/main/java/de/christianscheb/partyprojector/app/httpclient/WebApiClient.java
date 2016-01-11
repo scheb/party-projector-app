@@ -27,8 +27,8 @@ public class WebApiClient {
         HttpURLConnection urlConnection = null;
         try {
             urlConnection = (HttpURLConnection) urlObj.openConnection();
-            urlConnection.setConnectTimeout(5000);
-            urlConnection.setReadTimeout(5000);
+            urlConnection.setConnectTimeout(1000);
+            urlConnection.setReadTimeout(1000);
             urlConnection.setRequestMethod("GET");
             urlConnection.setUseCaches(false);
             urlConnection.setDoInput(true);
@@ -66,6 +66,8 @@ public class WebApiClient {
         HttpURLConnection urlConnection = null;
         try {
             urlConnection = (HttpURLConnection) urlObj.openConnection();
+            urlConnection.setConnectTimeout(1000);
+            urlConnection.setConnectTimeout(3000);
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             urlConnection.setRequestProperty("Content-Length", Integer.toString(urlParameters.getBytes().length));
@@ -107,6 +109,8 @@ public class WebApiClient {
         try {
             String boundary = Long.toHexString(System.currentTimeMillis());
             connection = (HttpURLConnection) urlObj.openConnection();
+            connection.setConnectTimeout(1000);
+            connection.setConnectTimeout(10000);
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
 
