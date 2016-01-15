@@ -126,11 +126,11 @@ public class WebApiClient {
             if (bitmapImage.getHeight() > SCALED_IMAGE_HEIGHT) {
                 int newWidth = (int) Math.round(bitmapImage.getWidth() * ((double) SCALED_IMAGE_HEIGHT / bitmapImage.getHeight()));
                 Log.d(getClass().getSimpleName(), "New dimensions: " + newWidth + "x" + SCALED_IMAGE_HEIGHT);
-                Bitmap scaled = Bitmap.createScaledBitmap(bitmapImage, newWidth, SCALED_IMAGE_HEIGHT, true);
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                scaled.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-                file = new ByteArrayInputStream(bytes.toByteArray());
+                bitmapImage = Bitmap.createScaledBitmap(bitmapImage, newWidth, SCALED_IMAGE_HEIGHT, true);
             }
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bitmapImage.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
+            file = new ByteArrayInputStream(bytes.toByteArray());
 
             // Send text file
             writer.append("--" + boundary).append(CRLF);
