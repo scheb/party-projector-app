@@ -1,5 +1,7 @@
 package de.christianscheb.partyprojector.app.httpclient;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,6 +12,7 @@ import java.util.zip.GZIPOutputStream;
 
 public class WebApiClient {
 
+    public static final int SCALED_IMAGE_HEIGHT = 720;
     private String baseUrl;
     private final String CRLF = "\r\n";
     private final String CHARSET = "UTF-8";
@@ -117,6 +120,17 @@ public class WebApiClient {
 
             OutputStream output = connection.getOutputStream();
             PrintWriter writer = new PrintWriter(new OutputStreamWriter(output, CHARSET), true);
+
+            Bitmap bitmapImage = BitmapFactory.decodeStream(file);
+            Log.d(getClass().getSimpleName(), "Image dimensions: " + bitmapImage.getWidth() + "x" + bitmapImage.getHeight());
+            if (bitmapImage.getHeight() > SCALED_IMAGE_HEIGHT) {
+                int newWidth = (int) Math.round(bitmapImage.getWidth() * ((double) SCALED_IMAGE_HEIGHT / bitmapImage.getHeight()));
+                Log.d(getClass().getSimpleName(), "New dimensions: " + newWidth + "x" + SCALED_IMAGE_HEIGHT);
+                Bitmap scaled = Bitmap.createScaledBitmap(bitmapImage, newWidth, SCALED_IMAGE_HEIGHT, true);
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                scaled.compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+                file = new ByteArrayInputStream(bytes.toByteArray());
+            }
 
             // Send text file
             writer.append("--" + boundary).append(CRLF);
