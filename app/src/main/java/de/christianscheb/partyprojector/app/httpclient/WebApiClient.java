@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import java.io.*;
 import java.net.*;
+import java.util.zip.GZIPOutputStream;
 
 public class WebApiClient {
 
@@ -121,6 +122,7 @@ public class WebApiClient {
             writer.append("--" + boundary).append(CRLF);
             writer.append("Content-Disposition: form-data; name=\"picture\"; filename=\"picture.jpg\"").append(CRLF);
             writer.append("Content-Type: text/plain; charset=" + CHARSET).append(CRLF);
+            writer.append("Content-Encoding: gzip").append(CRLF);
             writer.append(CRLF).flush();
             copyStream(file, output);
             file.close();
@@ -151,9 +153,11 @@ public class WebApiClient {
     public static void copyStream(InputStream input, OutputStream output) throws IOException {
         byte[] buffer = new byte[1024];
         int bytesRead;
+        GZIPOutputStream gzipOut = new GZIPOutputStream(output);
         while ((bytesRead = input.read(buffer)) != -1) {
-            output.write(buffer, 0, bytesRead);
+            gzipOut.write(buffer, 0, bytesRead);
         }
+        gzipOut.flush();
     }
 
     private URL getUrl(String endpoint) throws WebApiClientException {
