@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference
-        android:key="pref_server"
-        android:title="@string/pref_server"
-        android:summary="@string/pref_server_summ"
-        android:defaultValue="http://projector/" />
-    <de.christianscheb.partyprojector.app.preferences.TestConnectionPreference
-        android:key="pref_server_test"
-        android:title="@string/pref_server_test"
-        android:summary="@string/pref_server_test_summ" />
+    <PreferenceCategory android:title="@string/pref_projector">
+        <EditTextPreference
+            android:key="pref_server"
+            android:title="@string/pref_server"
+            android:summary="@string/pref_server_summ"
+            android:defaultValue="http://projector/" />
+        <de.christianscheb.partyprojector.app.preferences.TestConnectionPreference
+            android:key="pref_server_test"
+            android:title="@string/pref_server_test"
+            android:summary="@string/pref_server_test_summ" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/pref_streaming">
+        <ListPreference
+            android:key="pref_camera"
+            android:title="@string/pref_camera" />
+        <CheckBoxPreference
+            android:key="pref_flash_light"
+            android:title="@string/pref_flash_light"
+            android:defaultValue="false" />
+        <ListPreference
+            android:key="pref_size"
+            android:title="@string/pref_stream_resolution" />
+        <ListPreference
+            android:key="pref_jpeg_quality"
+            android:title="@string/pref_stream_quality"
+            android:inputType="number"
+            android:entries="@array/pref_syncConnectionTypes_values"
+            android:entryValues="@array/pref_syncConnectionTypes_values"
+            android:defaultValue="50" />
+    </PreferenceCategory>
 </PreferenceScreen>

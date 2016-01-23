@@ -19,4 +19,14 @@
     <string name="connection_success">Connection works!</string>
     <string name="connection_failed">Can\'t connect to projector server.</string>
     <string name="ok">OK</string>
+    <string name="title_activity_stream">Live Stream</string>
+    <string name="pref_camera">Camera</string>
+    <string name="pref_flash_light">Enable flash light</string>
+    <string name="pref_stream_resolution">Resolution</string>
+    <string name="pref_stream_quality">Quality</string>
+    <string name="pref_streaming">Video Streaming</string>
+    <string name="pref_projector">Projector Server</string>
+    <string name="camera_location_back">back</string>
+    <string name="camera_location_front">front</string>
+    <string name="camera_location_unknown">Unknown</string>
 </resources>

@@ -19,6 +19,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.*;
 import de.christianscheb.partyprojector.app.httpclient.WebApiClient;
 import de.christianscheb.partyprojector.app.httpclient.WebApiClientException;
+import com.foxdogstudios.peepers.StreamCameraActivity;
 import de.christianscheb.partyprojector.app.preferences.AppPreferences;
 
 import java.io.*;
@@ -222,6 +223,10 @@ public class MainActivity extends AppCompatActivity {
                 toast.show();
             }
         });
+    }
+
+    public void onStream(View view) {
+        startActivity(new Intent(this, StreamCameraActivity.class));
     }
 
     private class PostMessageTask extends AsyncTask<String, Boolean, Boolean> {
