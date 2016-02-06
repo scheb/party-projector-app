@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Party Projector</string>
-    <string name="action_settings">Settings</string>
     <string name="send">Send</string>
     <string name="display_picture">Display Picture</string>
     <string name="capture_picture">Capture Picture</string>
@@ -29,4 +28,5 @@
     <string name="camera_location_back">back</string>
     <string name="camera_location_front">front</string>
     <string name="camera_location_unknown">Unknown</string>
+    <string name="title_activity_about">About</string>
 </resources>
