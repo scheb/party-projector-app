@@ -70,7 +70,8 @@
                 android:text="@string/about_web1"
                 android:id="@+id/about_web1"
                 android:layout_marginBottom="3dp"
-                android:layout_gravity="start" />
+                android:layout_gravity="start"
+                android:autoLink="web"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +80,8 @@
                 android:text="@string/about_web2"
                 android:id="@+id/about_web2"
                 android:layout_gravity="start"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="20dp"
+                android:autoLink="web"/>
 
         </LinearLayout>
 
