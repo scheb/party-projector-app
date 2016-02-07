@@ -1,19 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".AboutActivity">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false">
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,8 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Version 0.1"
-            android:id="@+id/textView2"
+            android:text="@string/about_version"
             android:layout_gravity="center_horizontal" />
 
         <ImageView
@@ -44,8 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="2016 by Aggisoft"
-            android:id="@+id/textView"
+            android:text="@string/about_copy"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="3dp" />
 
@@ -53,8 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Christian Scheb"
-            android:id="@+id/textView4"
+            android:text="@string/about_name"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp" />
 
@@ -62,8 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="www.aggiwear.com"
-            android:id="@+id/textView3"
+            android:text="@string/about_web1"
+            android:id="@+id/about_web1"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="3dp" />
 
@@ -71,8 +70,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="www.christianscheb.de"
-            android:id="@+id/textView5"
+            android:text="@string/about_web2"
+            android:id="@+id/about_web2"
             android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
+
 </RelativeLayout>
