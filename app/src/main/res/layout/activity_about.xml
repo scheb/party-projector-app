@@ -39,7 +39,8 @@
             android:layout_gravity="center_horizontal"
             android:src="@drawable/background"
             android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="30dp"
+            android:onClick="onImageClick" />
 
         <TextView
             android:layout_width="wrap_content"
