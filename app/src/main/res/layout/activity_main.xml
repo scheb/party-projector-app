@@ -3,86 +3,88 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:src="@drawable/background"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/watermark"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:scaleType="centerInside"
-        android:padding="20dp"
-        android:alpha="0.1" />
+        android:id="@+id/watermark"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_alignTop="@+id/watermark"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="@string/write_message"
-                android:id="@+id/messageTextField"
-                android:inputType="text"
-                android:layout_weight="1"
-                android:imeOptions="actionSend" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/send"
-                android:id="@+id/sendMessageButton"
-                android:onClick="onSendMessage" />
-        </LinearLayout>
-        
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="350dp" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
+        <EditText
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:hint="@string/write_message"
+            android:id="@+id/messageTextField"
+            android:inputType="text"
+            android:layout_weight="1"
+            android:imeOptions="actionSend" />
 
-            <ImageButton
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:text="@string/capture_picture"
-                android:src="@drawable/camera"
-                android:id="@+id/capturePictureButton"
-                android:onClick="onCapturePicture"
-                android:scaleType="fitXY"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/send"
+            android:id="@+id/sendMessageButton"
+            android:onClick="onSendMessage" />
+    </LinearLayout>
 
-            <ImageButton
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:text="@string/display_picture"
-                android:id="@+id/selectPictureButton"
-                android:onClick="onSelectPicture"
-                android:src="@drawable/picture"
-                android:scaleType="fitXY"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/watermark"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="10dp">
 
-            <ImageButton
-                android:layout_width="96dp"
-                android:layout_height="96dp"
-                android:text="@string/stream_video"
-                android:src="@drawable/video"
-                android:id="@+id/streamButton"
-                android:onClick="onStream"
-                android:scaleType="fitXY"/>
+        <ImageButton
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:text="@string/capture_picture"
+            android:src="@drawable/camera"
+            android:id="@+id/capturePictureButton"
+            android:onClick="onCapturePicture"
+            android:scaleType="fitXY"/>
 
-        </LinearLayout>
+        <ImageButton
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:text="@string/display_picture"
+            android:id="@+id/selectPictureButton"
+            android:onClick="onSelectPicture"
+            android:src="@drawable/picture"
+            android:scaleType="fitXY"/>
+
+        <ImageButton
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:text="@string/stream_video"
+            android:src="@drawable/video"
+            android:id="@+id/streamButton"
+            android:onClick="onStream"
+            android:scaleType="fitXY"/>
 
     </LinearLayout>
 
