@@ -25,6 +25,7 @@
             android:id="@+id/imageView"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/aggi"
+            android:layout_marginStart="5dp"
             android:layout_marginEnd="30dp"
             android:onClick="onImageClick" />
 
