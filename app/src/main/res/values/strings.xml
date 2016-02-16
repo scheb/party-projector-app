@@ -34,4 +34,7 @@
     <string name="about_name">Christian Scheb</string>
     <string name="about_web1">www.aggiwear.com</string>
     <string name="about_web2">www.christianscheb.de</string>
+    <string name="stream_live">LIVE</string>
+    <string name="stream_connect">Connecting</string>
+    <string name="stream_video">Stream Video</string>
 </resources>

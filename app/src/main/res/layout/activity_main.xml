@@ -76,7 +76,7 @@
             <ImageButton
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:text="@string/capture_picture"
+                android:text="@string/stream_video"
                 android:src="@drawable/video"
                 android:id="@+id/streamButton"
                 android:onClick="onStream"

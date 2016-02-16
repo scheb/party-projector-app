@@ -29,4 +29,7 @@
     <string name="camera_location_front">Vorderseite</string>
     <string name="camera_location_unknown">Unbekannt</string>
     <string name="title_activity_about">Über</string>
+    <string name="stream_connect">Verbinden</string>
+    <string name="stream_live"></string>
+    <string name="stream_video">Video Streamen</string>
 </resources>
