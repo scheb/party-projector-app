@@ -47,7 +47,7 @@
         
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="350dp" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -58,19 +58,19 @@
             <ImageButton
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:text="@string/display_picture"
-                android:id="@+id/selectPictureButton"
-                android:onClick="onSelectPicture"
-                android:src="@drawable/picture"
+                android:text="@string/capture_picture"
+                android:src="@drawable/camera"
+                android:id="@+id/capturePictureButton"
+                android:onClick="onCapturePicture"
                 android:scaleType="fitXY"/>
 
             <ImageButton
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:text="@string/capture_picture"
-                android:src="@drawable/camera"
-                android:id="@+id/capturePictureButton"
-                android:onClick="onCapturePicture"
+                android:text="@string/display_picture"
+                android:id="@+id/selectPictureButton"
+                android:onClick="onSelectPicture"
+                android:src="@drawable/picture"
                 android:scaleType="fitXY"/>
 
             <ImageButton
