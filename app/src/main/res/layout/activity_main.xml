@@ -56,8 +56,8 @@
             android:gravity="center">
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
                 android:text="@string/capture_picture"
                 android:src="@drawable/camera"
                 android:id="@+id/capturePictureButton"
@@ -65,8 +65,8 @@
                 android:scaleType="fitXY"/>
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
                 android:text="@string/display_picture"
                 android:id="@+id/selectPictureButton"
                 android:onClick="onSelectPicture"
@@ -74,8 +74,8 @@
                 android:scaleType="fitXY"/>
 
             <ImageButton
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
                 android:text="@string/stream_video"
                 android:src="@drawable/video"
                 android:id="@+id/streamButton"
