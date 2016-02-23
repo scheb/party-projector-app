@@ -37,4 +37,7 @@
     <string name="stream_live">LIVE</string>
     <string name="stream_connect">Connecting</string>
     <string name="stream_video">Stream Video</string>
+    <string name="connection_failed_title">Connection Failed</string>
+    <string name="connection_failed_msg">Could not connect to the server. Make sure you\'re connected to wifi and the correct server address is configured.</string>
+    <string name="stream_disconnected">Disconnected</string>
 </resources>

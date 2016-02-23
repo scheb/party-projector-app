@@ -27,8 +27,8 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:id="@+id/streamIcon"
-            android:background="@drawable/connect"
+            android:id="@+id/streamStatusIcon"
+            android:src="@drawable/connect_anim"
             android:layout_marginRight="3dp" />
 
         <TextView
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="@string/stream_connect"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:id="@+id/streamText"
+            android:id="@+id/streamStatusText"
             android:textColor="#fff"
             android:textStyle="bold"
             android:shadowColor="#ff000000"

@@ -41,7 +41,7 @@ public class WebApiClient {
             JSONObject response = new JSONObject(getResponse(urlConnection));
             boolean isSuccess = response.getBoolean("success");
             String serverName = response.getString("server");
-            Log.d(getClass().getSimpleName(), "Request sent");
+            Log.d(getClass().getSimpleName(), "Request sent, response " + isSuccess + ", " + serverName);
             return isSuccess && serverName != null;
         } catch (ProtocolException e) {
             throw new WebApiClientException("Could not execute HTTP request", e);
@@ -56,7 +56,38 @@ public class WebApiClient {
         }
     }
 
-    public void sendMessage(String message) throws WebApiClientException {
+    public boolean startStream() throws WebApiClientException {
+        URL urlObj = getUrl("stream");
+        Log.d(getClass().getSimpleName(), "Request to: " + urlObj);
+
+        HttpURLConnection urlConnection = null;
+        try {
+            urlConnection = (HttpURLConnection) urlObj.openConnection();
+            urlConnection.setConnectTimeout(1000);
+            urlConnection.setReadTimeout(3000);
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setUseCaches(false);
+            urlConnection.setDoInput(true);
+
+            //Get Response
+            JSONObject response = new JSONObject(getResponse(urlConnection));
+            boolean isSuccess = response.getBoolean("success");
+            Log.d(getClass().getSimpleName(), "Request sent, response: " + isSuccess);
+            return isSuccess;
+        } catch (ProtocolException e) {
+            throw new WebApiClientException("Could not execute HTTP request", e);
+        } catch (IOException e) {
+            throw new WebApiClientException("Could not execute HTTP request", e);
+        } catch (JSONException e) {
+            throw new WebApiClientException("Malformed response", e);
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+        }
+    }
+
+    public boolean sendMessage(String message) throws WebApiClientException {
         URL urlObj = getUrl("message");
         Log.d(getClass().getSimpleName(), "Request to: " + urlObj);
 
@@ -71,7 +102,7 @@ public class WebApiClient {
         try {
             urlConnection = (HttpURLConnection) urlObj.openConnection();
             urlConnection.setConnectTimeout(1000);
-            urlConnection.setConnectTimeout(3000);
+            urlConnection.setReadTimeout(3000);
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             urlConnection.setRequestProperty("Content-Length", Integer.toString(urlParameters.getBytes().length));
@@ -88,10 +119,8 @@ public class WebApiClient {
             //Get Response
             JSONObject response = new JSONObject(getResponse(urlConnection));
             boolean isSuccess = response.getBoolean("success");
-            Log.d(getClass().getSimpleName(), "Request sent");
-            if (!isSuccess) {
-                throw new WebApiClientException("Request failed");
-            }
+            Log.d(getClass().getSimpleName(), "Request sent, response: " + isSuccess);
+            return isSuccess;
         } catch (ProtocolException e) {
             throw new WebApiClientException("Could not execute HTTP request", e);
         } catch (IOException e) {
@@ -105,7 +134,7 @@ public class WebApiClient {
         }
     }
 
-    public void sendPicture(InputStream file) throws WebApiClientException {
+    public boolean sendPicture(InputStream file) throws WebApiClientException {
         URL urlObj = getUrl("picture");
         Log.d(getClass().getSimpleName(), "Send picture " + file + " to " + urlObj);
 
@@ -114,7 +143,7 @@ public class WebApiClient {
             String boundary = Long.toHexString(System.currentTimeMillis());
             connection = (HttpURLConnection) urlObj.openConnection();
             connection.setConnectTimeout(1000);
-            connection.setConnectTimeout(10000);
+            connection.setReadTimeout(10000);
             connection.setDoOutput(true);
             connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
 
@@ -147,10 +176,8 @@ public class WebApiClient {
             //Get Response
             JSONObject response = new JSONObject(getResponse(connection));
             boolean isSuccess = response.getBoolean("success");
-            Log.d(getClass().getSimpleName(), "Request sent");
-            if (!isSuccess) {
-                throw new WebApiClientException("Request failed");
-            }
+            Log.d(getClass().getSimpleName(), "Request sent, response: " + isSuccess);
+            return isSuccess;
         } catch (ProtocolException e) {
             throw new WebApiClientException("Could not execute HTTP request", e);
         } catch (IOException e) {

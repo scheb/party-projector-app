@@ -18,16 +18,24 @@
 
 package com.foxdogstudios.peepers;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.*;
 import android.widget.ImageView;
+import android.widget.TextView;
 import de.christianscheb.partyprojector.app.R;
+import de.christianscheb.partyprojector.app.httpclient.WebApiClient;
+import de.christianscheb.partyprojector.app.httpclient.WebApiClientException;
+import de.christianscheb.partyprojector.app.preferences.AppPreferences;
 
 public class StreamCameraActivity extends AppCompatActivity implements SurfaceHolder.Callback {
 
@@ -52,6 +60,10 @@ public class StreamCameraActivity extends AppCompatActivity implements SurfaceHo
     private int mJpegQuality = PREF_JPEG_QUALITY_DEF;
     private int mPreviewSizeIndex = PREF_PREVIEW_SIZE_INDEX_DEF;
 
+    private AppPreferences preferences;
+    private TextView streamStatusText;
+    private ImageView streamStatusIcon;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +71,8 @@ public class StreamCameraActivity extends AppCompatActivity implements SurfaceHo
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_camera);
+
+        preferences = new AppPreferences(PreferenceManager.getDefaultSharedPreferences(this));
 
         mPreviewDisplay = ((SurfaceView) findViewById(R.id.camera)).getHolder();
         mPreviewDisplay.addCallback(this);
@@ -71,8 +85,17 @@ public class StreamCameraActivity extends AppCompatActivity implements SurfaceHo
         tryStartCameraStreamer();
 
         // Animate connect icon
-        ImageView streamIcon = (ImageView) findViewById(R.id.streamIcon);
-        Drawable imageResource = streamIcon.getBackground();
+        streamStatusText = (TextView) findViewById(R.id.streamStatusText);
+        streamStatusText.setText(getString(R.string.stream_connect));
+        streamStatusIcon = (ImageView) findViewById(R.id.streamStatusIcon);
+        streamStatusIcon.setImageResource(R.drawable.connect_anim);
+        startAnimation(streamStatusIcon);
+
+        new StartStreamTask().execute();
+    }
+
+    private void startAnimation(ImageView icon) {
+        Drawable imageResource = icon.getDrawable();
         if (imageResource instanceof AnimationDrawable) {
             AnimationDrawable animation = (AnimationDrawable) imageResource;
             if (!animation.isRunning()) {
@@ -132,11 +155,9 @@ public class StreamCameraActivity extends AppCompatActivity implements SurfaceHo
         // saves everything as a string.
         try {
             return Integer.parseInt(mPrefs.getString(key, null));
-        }
-        catch (final NullPointerException e) {
+        } catch (final NullPointerException e) {
             return defValue;
-        }
-        catch (final NumberFormatException e) {
+        } catch (final NumberFormatException e) {
             return defValue;
         }
     }
@@ -156,5 +177,57 @@ public class StreamCameraActivity extends AppCompatActivity implements SurfaceHo
 
     private boolean hasFlashLight() {
         return getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+    }
+
+    private void showConnectionFailedMessage() {
+        final Activity self = this;
+        runOnUiThread(new Runnable() {
+            public void run() {
+                new AlertDialog.Builder(self)
+                        .setTitle(R.string.connection_failed_title)
+                        .setMessage(getString(R.string.connection_failed_msg))
+                        .setNeutralButton(R.string.ok, new AlertDialog.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+    }
+
+    private void setStreamingActive() {
+        streamStatusIcon.setImageResource(R.drawable.stream_live);
+        streamStatusText.setText(getString(R.string.stream_live));
+    }
+
+    private void setStreamingFailed() {
+        streamStatusIcon.setImageResource(R.drawable.stream_disconnected);
+        streamStatusText.setText(getString(R.string.stream_disconnected));
+    }
+
+    private class StartStreamTask extends AsyncTask<Void, Boolean, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            try {
+                WebApiClient client = new WebApiClient(preferences.getServerBaseUrl());
+                return client.startStream();
+            } catch (WebApiClientException e) {
+                e.printStackTrace();
+                showConnectionFailedMessage();
+                return false;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Boolean isSuccess) {
+            if (isSuccess) {
+                setStreamingActive();
+            } else {
+                setStreamingFailed();
+            }
+        }
     }
 }

@@ -30,6 +30,9 @@
     <string name="camera_location_unknown">Unbekannt</string>
     <string name="title_activity_about">Über</string>
     <string name="stream_connect">Verbinden</string>
-    <string name="stream_live"></string>
+    <string name="stream_live">LIVE</string>
     <string name="stream_video">Video Streamen</string>
+    <string name="connection_failed_title">Keine Verbindung</string>
+    <string name="connection_failed_msg">Konnte nicht zum Server verbinden. Stelle sicher, dass du mit dem WLAN verbunden bist und die richtige Server-Adresse konfiguriert ist.</string>
+    <string name="stream_disconnected">Nicht verbunden</string>
 </resources>
