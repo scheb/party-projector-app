@@ -40,8 +40,8 @@
             android:id="@+id/imageView"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/aggi"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
             android:onClick="onImageClick" />
 
         <TextView
@@ -51,14 +51,6 @@
             android:text="@string/about_copy"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="3dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="@string/about_name"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,6 +70,25 @@
             android:id="@+id/about_web2"
             android:layout_gravity="center_horizontal"
             android:autoLink="web"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/about_credit1"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:id="@+id/credit1"
+            android:layout_marginBottom="3dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/about_credit2"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/credit2"
+            android:layout_marginBottom="10dp" />
 
     </LinearLayout>
 

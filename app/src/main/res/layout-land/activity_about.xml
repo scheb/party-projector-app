@@ -63,14 +63,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="@string/about_name"
-                android:layout_gravity="start"
-                android:layout_marginBottom="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/about_web1"
                 android:id="@+id/about_web1"
                 android:layout_marginBottom="3dp"
@@ -84,8 +76,24 @@
                 android:text="@string/about_web2"
                 android:id="@+id/about_web2"
                 android:layout_gravity="start"
-                android:layout_marginBottom="20dp"
                 android:autoLink="web"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/about_credit1"
+                android:layout_marginTop="10dp"
+                android:id="@+id/credit1"
+                android:layout_marginBottom="3dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/about_credit2"
+                android:id="@+id/credit2"
+                android:layout_marginBottom="10dp" />
 
         </LinearLayout>
 
