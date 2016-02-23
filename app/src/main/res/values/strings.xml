@@ -27,7 +27,7 @@
     <string name="camera_location_front">front</string>
     <string name="camera_location_unknown">Unknown</string>
     <string name="title_activity_about">About</string>
-    <string name="about_version">Version 0.1</string>
+    <string name="about_version">Version 0.2</string>
     <string name="about_copy">&#169; 2016 by Aggisoft</string>
     <string name="about_name">Christian Scheb</string>
     <string name="about_web1">www.aggiwear.com</string>
