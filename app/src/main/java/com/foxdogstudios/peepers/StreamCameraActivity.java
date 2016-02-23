@@ -20,10 +20,13 @@ package com.foxdogstudios.peepers;
 
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.*;
+import android.widget.ImageView;
 import de.christianscheb.partyprojector.app.R;
 
 public class StreamCameraActivity extends AppCompatActivity implements SurfaceHolder.Callback {
@@ -66,6 +69,16 @@ public class StreamCameraActivity extends AppCompatActivity implements SurfaceHo
 
         updateUi();
         tryStartCameraStreamer();
+
+        // Animate connect icon
+        ImageView streamIcon = (ImageView) findViewById(R.id.streamIcon);
+        Drawable imageResource = streamIcon.getBackground();
+        if (imageResource instanceof AnimationDrawable) {
+            AnimationDrawable animation = (AnimationDrawable) imageResource;
+            if (!animation.isRunning()) {
+                animation.start();
+            }
+        }
     }
 
     @Override
