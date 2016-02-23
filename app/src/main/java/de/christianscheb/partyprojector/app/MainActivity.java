@@ -1,6 +1,9 @@
 package de.christianscheb.partyprojector.app;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -233,6 +236,24 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, StreamCameraActivity.class));
     }
 
+    private void showConnectionFailedMessage() {
+        final Activity self = this;
+        runOnUiThread(new Runnable() {
+            public void run() {
+                new AlertDialog.Builder(self)
+                        .setTitle(R.string.connection_failed_title)
+                        .setMessage(getString(R.string.connection_failed_msg))
+                        .setNeutralButton(R.string.ok, new AlertDialog.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+    }
+
     private class PostMessageTask extends AsyncTask<String, Boolean, Boolean> {
 
         @Override
@@ -243,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } catch (WebApiClientException e) {
                 e.printStackTrace();
-                showToast(e.getMessage());
+                showConnectionFailedMessage();
                 return false;
             }
         }
@@ -254,8 +275,6 @@ public class MainActivity extends AppCompatActivity {
             if (isSuccess) {
                 resetMessageText();
                 showToast(getString(R.string.message_sent));
-            } else {
-                showToast(getString(R.string.message_failed));
             }
         }
     }
@@ -270,6 +289,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             } catch (WebApiClientException e) {
                 e.printStackTrace();
+                showConnectionFailedMessage();
                 return false;
             }
         }
@@ -279,8 +299,6 @@ public class MainActivity extends AppCompatActivity {
             enablePictureUpload(true);
             if (isSuccess) {
                 showToast(getString(R.string.picture_sent));
-            } else {
-                showToast(getString(R.string.picture_failed));
             }
         }
     }

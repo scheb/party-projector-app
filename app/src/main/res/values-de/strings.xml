@@ -10,8 +10,6 @@
     <string name="message_sent">Nachricht gesendet!</string>
     <string name="title_activity_settings">Einstellungen</string>
     <string name="picture_sent">Bild gesendet!</string>
-    <string name="message_failed">Nachricht wurde nicht gesendet!</string>
-    <string name="picture_failed">Bild wurde nicht gesendet!</string>
     <string name="write_failed">Bilddatei konnte nicht angelegt werden</string>
     <string name="connection_failed">Konnte nicht zum Server verbinden.</string>
     <string name="connection_success">Die Verbindung funktioniert!</string>

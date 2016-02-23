@@ -10,8 +10,6 @@
     <string name="message_sent">Message sent!</string>
     <string name="title_activity_settings">Settings</string>
     <string name="picture_sent">Picture sent!</string>
-    <string name="message_failed">Failed sending message!</string>
-    <string name="picture_failed">Failed sending picture!</string>
     <string name="write_failed">Cannot create image file</string>
     <string name="pref_server_test">Test connection</string>
     <string name="pref_server_test_summ">Check the connection to the projector server</string>
