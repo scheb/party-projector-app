@@ -40,7 +40,7 @@
             android:inputType="text"
             android:layout_weight="1"
             android:imeOptions="actionSend"
-            android:textSize="25dp" />
+            android:textSize="20sp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
             android:text="@string/send"
             android:id="@+id/sendMessageButton"
             android:onClick="onSendMessage"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
