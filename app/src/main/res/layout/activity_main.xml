@@ -16,7 +16,7 @@
         android:layout_height="fill_parent"
         android:src="@drawable/watermark"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:scaleType="centerInside"
         android:id="@+id/watermark"
         android:layout_marginLeft="30dp"
@@ -57,7 +57,7 @@
         android:layout_alignBottom="@+id/watermark"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="0dp">
 
         <ImageButton
             android:layout_width="96dp"
