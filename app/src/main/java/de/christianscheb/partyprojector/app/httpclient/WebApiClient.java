@@ -11,7 +11,7 @@ import java.net.*;
 
 public class WebApiClient {
 
-    public static final int SCALED_IMAGE_HEIGHT = 720;
+    private static final int SCALED_IMAGE_HEIGHT = 720;
     private String baseUrl;
     private final String CRLF = "\r\n";
     private final String CHARSET = "UTF-8";
@@ -31,7 +31,7 @@ public class WebApiClient {
         try {
             urlConnection = (HttpURLConnection) urlObj.openConnection();
             urlConnection.setConnectTimeout(1000);
-            urlConnection.setReadTimeout(1000);
+            urlConnection.setReadTimeout(10000);
             urlConnection.setRequestMethod("GET");
             urlConnection.setUseCaches(false);
             urlConnection.setDoInput(true);
@@ -63,7 +63,7 @@ public class WebApiClient {
         try {
             urlConnection = (HttpURLConnection) urlObj.openConnection();
             urlConnection.setConnectTimeout(1000);
-            urlConnection.setReadTimeout(3000);
+            urlConnection.setReadTimeout(10000);
             urlConnection.setRequestMethod("GET");
             urlConnection.setUseCaches(false);
             urlConnection.setDoInput(true);
@@ -101,7 +101,7 @@ public class WebApiClient {
         try {
             urlConnection = (HttpURLConnection) urlObj.openConnection();
             urlConnection.setConnectTimeout(1000);
-            urlConnection.setReadTimeout(3000);
+            urlConnection.setReadTimeout(10000);
             urlConnection.setRequestMethod("POST");
             urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             urlConnection.setRequestProperty("Content-Length", Integer.toString(urlParameters.getBytes().length));
