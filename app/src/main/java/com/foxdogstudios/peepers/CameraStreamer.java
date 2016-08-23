@@ -42,7 +42,7 @@ import java.util.List;
     private final int mCameraIndex;
     private final boolean mUseFlashLight;
     private final int mPort;
-    private final int mPreviewSizeIndex;
+    private int mPreviewSizeIndex;
     private final int mJpegQuality;
     private final SurfaceHolder mPreviewDisplay;
 
@@ -187,8 +187,26 @@ import java.util.List;
         final Camera.Parameters params = camera.getParameters();
 
         final List<Camera.Size> supportedPreviewSizes = params.getSupportedPreviewSizes();
+
+        // Get default
+        int widthLessThan = 900;
+        if (mPreviewSizeIndex == -1) {
+            for (int i = 0; i < supportedPreviewSizes.size(); i++) {
+                Camera.Size size = supportedPreviewSizes.get(i);
+                if (size.width < widthLessThan) {
+                    Log.d(getClass().getSimpleName(), "No resolution selected, use " + size.width + "x" + size.height);
+                    mPreviewSizeIndex = i;
+                    break;
+                }
+            }
+            if (mPreviewSizeIndex == -1) {
+                mPreviewSizeIndex = 0;
+            }
+        }
+
         final Camera.Size selectedPreviewSize = supportedPreviewSizes.get(mPreviewSizeIndex);
         params.setPreviewSize(selectedPreviewSize.width, selectedPreviewSize.height);
+        Log.d(getClass().getSimpleName(), "Stream with " + selectedPreviewSize.width + "x" + selectedPreviewSize.height);
 
         if (mUseFlashLight)
         {

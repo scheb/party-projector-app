@@ -46,7 +46,7 @@ public class StreamCameraActivity extends AppCompatActivity implements SurfaceHo
     private static final int PREF_CAMERA_INDEX_DEF = 0;
     private static final boolean PREF_FLASH_LIGHT_DEF = false;
     private static final int PREF_JPEG_QUALITY_DEF = 40;
-    private static final int PREF_PREVIEW_SIZE_INDEX_DEF = 0;
+    private static final int PREF_PREVIEW_SIZE_INDEX_DEF = -1;
     public static final int STREAM_PORT = 8089;
 
     private boolean mRunning = false;
