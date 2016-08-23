@@ -5,7 +5,7 @@
             android:key="pref_server"
             android:title="@string/pref_server"
             android:summary="@string/pref_server_summ"
-            android:defaultValue="http://192.168.1.100:8080/" />
+            android:defaultValue="http://192.168.1.100:8088/" />
         <de.christianscheb.partyprojector.app.preferences.TestConnectionPreference
             android:key="pref_server_test"
             android:title="@string/pref_server_test"
